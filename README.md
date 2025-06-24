@@ -354,6 +354,37 @@ int main() {
 }
 ```
 
+### 6.4 Glib vector
+
+```c
+#include <glib.h>
+#include <stdio.h>
+
+int main() {
+    GArray *array;
+    int i;
+
+    // Create a new GArray to store int values
+    // Parameters: zero_terminated=FALSE, clear=FALSE, element_size=sizeof(int)
+    array = g_array_new(FALSE, FALSE, sizeof(int));
+
+    // Append integers 0 to 4 to the array
+    for (i = 0; i < 5; i++) {
+        g_array_append_val(array, i);
+    }
+
+    // Access and print the elements using g_array_index macro
+    for (i = 0; i < array->len; i++) {
+        printf("%d\n", g_array_index(array, int, i));
+    }
+
+    // Free the array and its data
+    g_array_free(array, TRUE);
+
+    return 0;
+}
+```
+
 ## 7. Pointers & Memory Management
 
 ### 7.1. Pointers
